@@ -1,3 +1,7 @@
+## 1.0.3w (unreleased)
+
+- implement \quad and \qquad spacing commands.
+
 ## 1.0.2
 
 - fixed matrix spacing

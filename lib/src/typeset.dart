@@ -47,6 +47,23 @@ void typeset(TeXNode node, int fracDepth) {
           // ================ spacing ================
           node.postfixSpacing = tk == '\\,' ? 150 : 300;
           return;
+        } else if (tk == '\\quad' || tk == '\\qquad') {
+          //space depends on "EM"
+          var entry = table["M"] as Map<Object, Object>;
+          var glyph = Glyph();
+          glyph.tk = node.tk;
+
+          if (entry.containsKey("d")) {
+            glyph.x = (entry["d"] as int).toDouble(); // delta x
+          }
+          glyph.width = (entry["w"] as int).toDouble();
+          glyph.height = (entry["h"] as int).toDouble(); //standardFontHeightt
+          node.glyphs.add(glyph);
+          if (tk == '\\qquad') {
+            node.glyphs.add(glyph);
+          }
+          node.calcGeometry();
+          return;
         } else if (functions.contains(tk)) {
           // ================ functions ================
           node.type = TeXNodeType.list;
