@@ -39,7 +39,7 @@ void main() {
   // instantiate tex
   var tex = TeX();
   // set the RGB color (red color)
-  tex.setColor(157, 59, 50); 
+  tex.setColor(157, 59, 50);
   // set the scaling factor
   tex.scalingFactor = 2.0;
   // create SVG data
@@ -64,6 +64,7 @@ Output SVG:
 This example displays an equation as inline math in fluent text. The complete code can be found in directory `/examples/web`.
 
 CSS:
+
 ```css
 .equation {
   padding-left: 1px;
@@ -74,6 +75,7 @@ CSS:
 ```
 
 HTML:
+
 ```html
 <p>
   Einsteins famous equation is
@@ -82,6 +84,7 @@ HTML:
 ```
 
 Dart:
+
 ```dart
 import 'dart:html';
 import 'dart:convert';
@@ -161,6 +164,39 @@ For building the fonts, [python3](https://www.python.org) and [node](https://nod
 ```bash
 ./build.sh
 ```
+
+## Adding New Glyphs
+
+Example is adding `%` as a glyph.
+
+1. Register the glyph in `meta/glyphs.csv`
+   Add this line after the `!` entry. Adjust `850` if the spacing looks off.
+   ```csv
+   \%; TEX-N-25; 850; 750; 0
+   ```
+2. Regenerate the SVG path data.
+   ```sh
+   cd font
+   npm install
+   node font.js
+   cd ..
+   ```
+3. Regenerate the symbol table.
+   ```sh
+   python3 meta/run.py
+   dart format lib/src/svg.dart lib/src/tab.dart
+   ```
+4. Teach the teokenizer to recognize the new glyph.
+   Make changes to `lib/src/lex.dart` if necessary. Adding `\%` needed a change here:
+
+   ```dart
+   } else if (j == i + 1 && (ch == '{' || ch == '}' || ch == '%')) {
+   ```
+
+5. Build and test it.
+   ```sh
+   ./build.sh
+   ```
 
 ## License of MathJax
 

@@ -1,4 +1,8 @@
-## 1.0.3w (unreleased)
+## 1.0.4
+
+- added `\%` command
+
+## 1.0.3 (unreleased)
 
 - implement \quad and \qquad spacing commands.
 
@@ -7,7 +11,7 @@
 - fixed matrix spacing
 - fixed fraction typesetting
 - fixed spaces before/after functions (e.g. \sin)
-- fixed size of parentheses for \left .. \right  (TODO: must replace parentheses by different glyphs if size is large)
+- fixed size of parentheses for \left .. \right (TODO: must replace parentheses by different glyphs if size is large)
 
 ## 1.0.1
 

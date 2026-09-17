@@ -37,7 +37,7 @@ class Lex {
               (ch.codeUnitAt(0) >= 'a'.codeUnitAt(0) &&
                   ch.codeUnitAt(0) <= 'z'.codeUnitAt(0))) {
             tk += ch;
-          } else if (j == i + 1 && (ch == '{' || ch == '}')) {
+          } else if (j == i + 1 && (ch == '{' || ch == '}' || ch == '%')) {
             tk += ch;
             j++;
             break;

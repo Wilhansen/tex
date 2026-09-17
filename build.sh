@@ -1,5 +1,7 @@
 #!/bin/bash
 
+dart pub get
+
 # build lib/src/svg.dart
 cd font
 ./run.sh
